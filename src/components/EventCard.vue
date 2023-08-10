@@ -9,8 +9,17 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
-import { type EventItem } from '@/type';
+import type { EventItem } from '@/type';
+import type { PropType } from 'vue';
+const props = defineProps({
+    event: {
+        type: Object as PropType<EventItem>
+        , require: true
+    }
+})
+</script>
+
+<!-- import { ref } from 'vue'import { type EventItem } from '@/type';
 const event = ref<EventItem>({
     id: 5928101,
     category: 'animal welfare',
@@ -23,6 +32,7 @@ const event = ref<EventItem>({
     organizer: "Kat Laydee"
 })
 </script>
+}) -->
 
 <style scoped>
 .event-card {
