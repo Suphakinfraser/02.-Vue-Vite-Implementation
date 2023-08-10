@@ -1,22 +1,22 @@
 <script setup lang="ts">
-// import TheWelcome from '../components/TheWelcome.vue'
-import EventCard from '@/components/EventCard.vue';
-import type { EventItem } from '@/type';
+import EventCard from '../components/EventCard.vue'
+import type { EventItem } from '@/type'
+import { ref, type Ref } from 'vue'
+import EventService from '@/services/EventService'
 
-import axios from 'axios'
+const events: Ref<Array<EventItem>> = ref([])
 
-import { ref } from 'vue'
+EventService.getEvent().then((response) => {
+  events.value = response.data
+  console.log(events.value)
 
-const events: ref<Array<EventItem>> = ref([])
-
-    axios.get<EventItem[]>('http://localhost:3004/events').then((res) => {
-  events.value = res.data
+   
 })
 </script>
 
 <template>
+      <h1>Events For Good</h1>
   <main class="events">
-    <!-- <TheWelcome /> -->
     <EventCard v-for="event in events" :key="event.id" :event="event"></EventCard>
   </main>
 </template>
